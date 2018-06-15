@@ -13,7 +13,6 @@ set /a okay=0
 ver >nul
 cls
 
-:loop
 :A
 start chrome.exe ""
 timeout /nobreak 10
