@@ -1,5 +1,5 @@
 :::::::::::::::::::::::::::
-::NOAH'S SUPER POWER V1.2::
+::NOAH'S SUPER POWER V1.4::
 :::::::::::::::::::::::::::
 :: Copyright (c) Grathium Softwares 2018, grathiumsoftwears@gmail.com
 
