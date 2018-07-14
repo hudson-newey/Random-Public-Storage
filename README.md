@@ -1,5 +1,5 @@
 Capital Defence.exe = very light weight anti virus (vb.net)
-Cv10-D.exe = HTTP packet overloader (vb.net, dos)
+Cv10-D.exe = HTTP request overloader (vb.net, dos)
 Cyber_Nuke.zip = Packet Sender (dos, vbs, vb.net)
 Game Lock.exe = full screen games (C#)
 Master Commands.exe = custom commands (C#)
