@@ -11,5 +11,5 @@ echo @echo off >>"C:\Users\%username%\Desktop\RSR\Remote Shutdown Repacked.cmd"
 echo %publickey% -i>>"C:\Users\%username%\Desktop\RSR\Remote Shutdown Repacked.cmd"
 echo exit /B 1>>"C:\Users\%username%\Desktop\RSR\Remote Shutdown Repacked.cmd"
 
-echo Installed Remote Shutdown Repacked!
-pause >nul
+REM show the user where the file is located
+start explorer.exe "C:\Users\%username%\Desktop\RSR\"
