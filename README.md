@@ -9,3 +9,4 @@ hide my ass.bat = auto incognito for browsers (dos)
 maxfiles.bat = creates one big file (dos)
 secure log.bat = packet inspector (dos)
 secure send.zip = encrypted messaging system (dos, vbs, vb.net)
+Remote Shutdown Repacked = allows the user to remotely shutdown computers
