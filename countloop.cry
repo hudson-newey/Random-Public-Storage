@@ -1,0 +1,8 @@
+function main() {
+	i=0;
+	
+	while (true==true) {
+		print(i);
+		i++;
+	}
+}
