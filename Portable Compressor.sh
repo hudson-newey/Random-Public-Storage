@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printf "File to Decompress"
+printf "File to Decompress"; echo
 read DecompressFile
 
 #functions
@@ -13,6 +13,6 @@ echo Decompressing $DecompressFile
 URL = cat $DecompressFile
 
 rm $DecompressFile
-curl $url>>./$DecompressFile + ".txt"
+curl "https://pastebin.com/raw/" + $url>>./$DecompressFile + ".txt"
 
 pause 'Done! Press [Enter] key to continue...'
