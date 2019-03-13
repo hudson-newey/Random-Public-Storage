@@ -21,7 +21,7 @@ goto loop
 :finished
 REM display the message box so the user doesn't have to keep checkign the program
 echo Timer Done for %mins% Minutes!
-echo echo msgbox "Timer Done for %mins% Minutes!">>"%cd%\mes.vbs"
+echo echo x=msgbox("Timer Done for %mins% Minutes!",0+48,"timer")>>"%cd%\mes.vbs"
 timeout /t 0 >nul
 start "%cd%\mes.vbs"
 del "%cd%\mes.vbs"
