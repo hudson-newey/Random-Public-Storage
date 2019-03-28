@@ -53,7 +53,6 @@ func main() {
 		// TAKE GET OUT OF THE STRING
 		str := command
 		str = replacer.Replace(str)
-		fmt.Println(str)
 
 		output := getHTML(str)
 		importdata := string(output[:])
