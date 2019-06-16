@@ -1,13 +1,22 @@
+/*
+Wire Tap Copyright (C) 2018 Grathium Sofwares <grathiumsoftwears@gmail.com>
+	This program comes with ABSOLUTELY NO WARRANTY
+	This is a free software, and you are welcome to redistribute it under certain
+	conditions.
+*/
+
 package main
 
 import (
-	"os" 
+	"os"
 	"fmt"
 	"log"
 	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"bufio"
+	"os/exec"
 )
 
 var replacer = strings.NewReplacer("get ", "")
@@ -30,10 +39,18 @@ func main() {
 	  testingCommand := command
 	  if (command == "clear" || command == "cls") { fmt.Println("\033c") }
 	  if (command == "exit") { os.Exit(1) }
-	  if (strings.Contains(testingCommand, "cd")) { // chnage directory
-		newdir := strings.Replace(command, "cd ", "", 1)
-		os.Chdir(newdir)
+	  if (strings.Contains(testingCommand, "cd ")) { // chnage directory
+			os.Chdir(strings.Replace(command, "cd ", "", 1))
 	  }
+		if (strings.Contains(testingCommand, "rm ")) { // delete file
+			os.Remove(strings.Replace(command, "rm ", "", 1))
+		}
+		if (strings.Contains(testingCommand, "cat ")) { // read out contents of file
+			readFile(strings.Replace(command, "cat ", "", 1))
+		}
+		if (strings.Contains(testingCommand, "s/ ")) {
+			exec.Command(strings.Replace(command, "s/ ", "", 1))
+		}
 
 	  // list directory
 	  if (command == "ls") {
@@ -41,7 +58,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-	
+
 		for _, f := range files {
 				fmt.Println(f.Name())
 		}
@@ -53,6 +70,7 @@ func main() {
 		// TAKE GET OUT OF THE STRING
 		str := command
 		str = replacer.Replace(str)
+		fmt.Println(str)
 
 		output := getHTML(str)
 		importdata := string(output[:])
@@ -84,4 +102,42 @@ func getHTML(w string) []byte {
 	}
 	// show the HTML code as a string %s
 	return html
+}
+
+func readFile(path string) bool {
+    // Open file for reading.
+    var file, err = os.OpenFile(path, os.O_RDWR, 0644)
+    if isError(err) {
+        return false
+    }
+    defer file.Close()
+
+    // Read file, line by line
+    var text = make([]byte, 1024)
+    for {
+        _, err = file.Read(text)
+
+        // Break if finally arrived at end of file
+        if err == io.EOF {
+            break
+        }
+
+        // Break if error occured
+        if err != nil && err != io.EOF {
+            isError(err)
+            break
+        }
+    }
+
+    fmt.Println(string(text)) //output
+		return true
+}
+
+/* error checking function */
+func isError(err error) bool {
+    if err != nil {
+        fmt.Println(err.Error())
+    }
+
+    return (err != nil)
 }
